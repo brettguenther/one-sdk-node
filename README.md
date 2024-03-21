@@ -11,9 +11,9 @@ Simple Express + Pug app to test the OneSDK
 
 On a Mac, there are two steps to be able to run this locally on your phone.
 
-1. Add your phone's ip to /etc/hosts
+1. Add your phone's ip to `/etc/hosts`
 
-127.0.0.1 <yourPhoneIp>
+`127.0.0.1 <yourPhoneIp>`
 
 2. Get your mac ip and set in your phone browser
 
