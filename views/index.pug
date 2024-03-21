@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title Frankie Playground
+        script(src='https://assets.frankiefinancial.io/one-sdk/v1.2-beta/oneSdk.umd.js')
+        link(rel='stylesheet', href='/styles.css')
+    body
+        h1 OCR Testing
+        button(id='startOcr') Start Headed OCR
+        block content(id='container')
+            div(id='ocr-container')
+        script.
+            const sessionToken = "#{sessionToken}"
+        script(src='/script.js')
