@@ -1,4 +1,4 @@
-#FrankieNode Playground
+## Frankie Node App
 
 Simple Express + Pug app to test the OneSDK
 
