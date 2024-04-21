@@ -1,32 +1,29 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('startOcr').addEventListener('click', function() {
-        var lSessionToken = sessionToken;
-        const recipe = {recipe: {
-                // idv: {
-                //     provider: {name: "incode"},
-                // },
-                biometrics: 
-                    {provider: {name: "incode"},
+function load() {
+    var lSessionToken = sessionToken;
+    const recipe = {recipe: {
+            idv: {
+                provider: {name: "incode"},
+            },
+            biometrics: {
+                provider: {name: "incode"},
+            },
+            ocr: {
+                provider: {name: "incode"},
+                provideReviewScreen: true
+            },
+            form: {
+                provider: {
+                    name: 'legacy',
+                    version: 'v4'
                 },
-                ocr: {
-                    provider: {name: "incode"},
-                    provideReviewScreen: true
-                },
-                form: {
-                    provider: {
-                        name: 'legacy',
-                        version: 'v4'
-                    },
-                }
             }
         }
-        const modeConfig = {"mode":"development"}
-        const sessionConfig = {session:{token:lSessionToken}}
-        const oneSdkConfig =  {...sessionConfig,...modeConfig,...recipe};
-        activateSDK(oneSdkConfig)
-    });
-});
+    }
+    const modeConfig = {"mode":"development"}
+    const sessionConfig = {session:{token:lSessionToken}}
+    const oneSdkConfig =  {...sessionConfig,...modeConfig,...recipe};
+    activateSDK(oneSdkConfig)
+}
 
 
 async function activateSDK(oneSdkConfig) {
@@ -34,20 +31,34 @@ async function activateSDK(oneSdkConfig) {
 
     const oneSdkIndividual = oneSdk.individual();
 
-    // added based on carlos codepen
     oneSdkIndividual.addConsent("general");
     oneSdkIndividual.addConsent("docs");
     oneSdkIndividual.addConsent("creditheader");
 
     await oneSdkIndividual.submit();
 
-    const ocr = oneSdk.component('ocr');
+    const idv = oneSdk.flow('idv');
 
-    ocr.on('error', console.error);
+    // document.getElementById('startOcr').style.visibility = "hidden";
+    // document.getElementById('heading').style.visibility = "hidden";
 
-    ocr.on('*', (message)=> {
-        console.log(`ocr | ${JSON.stringify(message)}`)
+    idv.on('error', console.error);
+
+    idv.on('*', (message)=> {
+        console.log(`biometrics | * | ${JSON.stringify(message)}`)
     })
 
-    ocr.mount("#ocr-container");
+    idv.on("loading", (isloading, {message})=>{
+        if (isloading) {
+          //alert("loading, show now")
+            document.querySelector(".loader-wrapper").style.display = "block"
+        } else {
+          //alert("loading, disappear")
+            document.querySelector(".loader-wrapper").style.display = "none"
+        }
+    })
+  
+    idv.mount("#onboarding-container");
 }
+
+load()

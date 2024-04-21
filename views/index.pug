@@ -1,14 +1,21 @@
 doctype html
 html
     head
-        title Frankie Playground
-        script(src='https://assets.frankiefinancial.io/one-sdk/v1.2-beta/oneSdk.umd.js')
-        link(rel='stylesheet', href='/styles.css')
+        title Frankie Flow
+        script(src='https://assets.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
+        link(rel='stylesheet', href='/assets/styles/styles.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Julius+Sans+One&display=swap')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0', charset='UTF-8')
+        link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
     body
-        h1 OCR Testing
-        button(id='startOcr') Start Headed OCR
-        block content(id='container')
-            div(id='ocr-container')
+        //- h1(id='heading') OCR Testing
+        //- button(id='startOcr') Start Headed OCR
+        div(class='onboarding' id='onboarding-container')
+            div(class='loader-wrapper')
+                div(class='loader') Loading...
+                div(class='smt-spinner-circle')
+                    div(class='smt-spinner')
+                    div(class='smt-spinner-inner-circle')
         script.
             const sessionToken = "#{sessionToken}"
         script(src='/script.js')
