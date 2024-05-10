@@ -1,21 +1,52 @@
 doctype html
 html
-    head
-        title Frankie Flow
-        script(src='https://assets.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
-        link(rel='stylesheet', href='/assets/styles/styles.css')
-        link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Julius+Sans+One&display=swap')
-        meta(name='viewport' content='width=device-width, initial-scale=1.0', charset='UTF-8')
-        link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
-    body
-        //- h1(id='heading') OCR Testing
-        //- button(id='startOcr') Start Headed OCR
-        div(class='onboarding' id='onboarding-container')
-            div(class='loader-wrapper')
-                div(class='loader') Loading...
-                div(class='smt-spinner-circle')
-                    div(class='smt-spinner')
-                    div(class='smt-spinner-inner-circle')
-        script.
-            const sessionToken = "#{sessionToken}"
-        script(src='/script.js')
+  head
+    title OneSDK Flows
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .tile {
+        width: 200px;
+        height: 150px;
+        background-color: #091C2E;
+        margin: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .module {
+        display: flex;
+      }
+      .tile:hover {
+        transform: scale(1.1);
+      }
+      .logo {
+        display: block;
+        margin: 20px;
+      }
+    link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
+  body
+    //- div.tile(onclick="window.location.href='#'")
+    div.logo
+        img(src='/assets/images/FrankieOne-MainLogo.svg')
+    div.module
+        div.tile
+            a(href="biometrics" style="text-decoration: none; color: white;") Biometrics
+        div.tile
+            a(href="modular-forms" style="text-decoration: none; color: white;") Modular Forms
+        div.tile
+            a(href="ocr" style="text-decoration: none; color: white;") OCR <br> (coming soon)
+        div.tile
+            a(href="ocr-headless" style="text-decoration: none; color: white;") OCR Headless <br> (coming soon)
+        div.tile
+            a(href="fraud" style="text-decoration: none; color: white;") Fraud <br> (coming soon)
+        div.tile
+            a(href="form" style="text-decoration: none; color: white;") Manual Form <br> (coming soon)
