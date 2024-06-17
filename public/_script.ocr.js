@@ -1,33 +1,3 @@
-// script.js
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.getElementById('startOcr').addEventListener('click', function() {
-//         var lSessionToken = sessionToken;
-//         const recipe = {recipe: {
-//                 // idv: {
-//                 //     provider: {name: "incode"},
-//                 // },
-//                 biometrics: 
-//                     {provider: {name: "incode"},
-//                 },
-//                 ocr: {
-//                     provider: {name: "incode"},
-//                     provideReviewScreen: true
-//                 },
-//                 form: {
-//                     provider: {
-//                         name: 'legacy',
-//                         version: 'v4'
-//                     },
-//                 }
-//             }
-//         }
-//         const modeConfig = {"mode":"development"}
-//         const sessionConfig = {session:{token:lSessionToken}}
-//         const oneSdkConfig =  {...sessionConfig,...modeConfig,...recipe};
-//         activateSDK(oneSdkConfig)
-//     });
-// });
-
 function load() {
     var lSessionToken = sessionToken;
     const recipe = {recipe: {

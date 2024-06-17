@@ -5,32 +5,58 @@ html
     style.
       body {
         font-family: Arial, sans-serif;
-        display: block;
+        display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
+        background-color: #f0f0f0;
+        flex-direction: column;
+      }
+      .logo {
+        margin: 20px;
+      }
+      .module {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
       }
       .tile {
         width: 200px;
         height: 150px;
         background-color: #091C2E;
-        margin: 20px;
+        margin: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         transition: transform 0.2s;
-      }
-      .module {
-        display: flex;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .tile:hover {
         transform: scale(1.1);
       }
-      .logo {
-        display: block;
-        margin: 20px;
+      .tile p, .tile a {
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 1.6rem; /* Default text size */
+      }
+      @media (max-width: 600px) {
+        .tile {
+          width: 100%;
+          height: 100px;
+        }
+        .module {
+          flex-direction: column;
+          align-items: center;
+        }
+        .tile p, .tile a {
+          font-size: 1rem; /* Smaller text size for mobile */
+        }
       }
     link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
   body
@@ -38,15 +64,19 @@ html
     div.logo
         img(src='/assets/images/FrankieOne-MainLogo.svg')
     div.module
-        div.tile
-            a(href="biometrics" style="text-decoration: none; color: white;") Biometrics
-        div.tile
-            a(href="modular-forms" style="text-decoration: none; color: white;") Modular Forms
-        div.tile
-            a(href="ocr" style="text-decoration: none; color: white;") OCR <br> (coming soon)
-        div.tile
-            a(href="ocr-headless" style="text-decoration: none; color: white;") OCR Headless <br> (coming soon)
-        div.tile
-            a(href="fraud" style="text-decoration: none; color: white;") Fraud <br> (coming soon)
-        div.tile
-            a(href="form" style="text-decoration: none; color: white;") Manual Form <br> (coming soon)
+        a(href="idv-flow")
+          div.tile
+            p(style="text-decoration: none; color: white;") IDV Flow
+        a(href="manual-forms")
+          div.tile
+            p(style="text-decoration: none; color: white;") Manual Form
+        a(href="split-flow")
+          div.tile
+            p(style="text-decoration: none; color: white;") Split Flow
+        //- div.tile
+        //-     a(href="ocr-headless" style="text-decoration: none; color: white;") OCR Headless <br> (coming soon)
+        //- div.tile
+        //-     a(href="fraud" style="text-decoration: none; color: white;") Fraud <br> (coming soon)
+                //- a(href="modular-forms")
+        //-   div.tile
+        //-     p(style="text-decoration: none; color: white;") Modular Forms

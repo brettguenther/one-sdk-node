@@ -24,4 +24,6 @@ On a Mac, there are two steps to be able to run this locally on your phone.
 
 With the IP and the port in use for the node app load this on your phone and you should see the app running. 
 
+## Run via docker
 
+`docker compose up --build`
