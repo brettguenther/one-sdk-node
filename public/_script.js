@@ -27,7 +27,7 @@ function load() {
 
 
 async function activateSDK(oneSdkConfig) {
-    var oneSdk = await OneSdk(oneSdkConfig);
+    const oneSdk = await OneSdk(oneSdkConfig);
 
     const oneSdkIndividual = oneSdk.individual();
 

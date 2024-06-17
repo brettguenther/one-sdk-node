@@ -1,13 +1,17 @@
-// import OneSdk from '@frankieone/one-sdk'
+// import OneSDK from '@frankieone/one-sdk'
 
 async function getSessionToken() {
   const customerReference = uuidv4();
 
+  // const oneSdk = await OneSDK({ session: "test" });
+
+  const authToken = (process.env.CUSTOMER_CHILD_ID != undefined) ? `${process.env.CUSTOMER_ID}:${process.env.CUSTOMER_CHILD_ID}:${process.env.API_KEY}` : `${process.env.CUSTOMER_ID}:${process.env.API_KEY}`
+  // console.log(authToken);
   var response = await fetch(`${process.env.FRANKIE_BFF_URL}/auth/v2/machine-session`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: "machine " + Buffer.from(`${process.env.CUSTOMER_ID}:${process.env.CUSTOMER_CHILD_ID}:${process.env.API_KEY}`).toString("base64"),
+      authorization: "machine " + Buffer.from(authToken).toString("base64"),
     },
     body: JSON.stringify({
       permissions: {
@@ -17,6 +21,7 @@ async function getSessionToken() {
       },
     }),
   })
+  // console.log(`${JSON.stringify(response)}`)
   return response.headers.get('token');
 }
 
