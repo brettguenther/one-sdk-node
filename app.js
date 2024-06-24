@@ -51,6 +51,19 @@ app.get('/idv-flow', async (req, res) => {
     }
 });
 
+app.get('/ocr-flow', async (req, res) => {
+    try {
+        const sessionToken = await getSessionToken();
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        // console.log(`sessionToken: ${sessionToken}`)
+        return res.render('ocr-flow',{ sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
 app.get('/split-flow', async (req, res) => {
     try {
         const sessionToken = await getSessionToken();

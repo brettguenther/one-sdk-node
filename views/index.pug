@@ -33,6 +33,7 @@ html
         transition: transform 0.2s;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
       }
       .tile:hover {
         transform: scale(1.1);
@@ -47,12 +48,13 @@ html
       }
       @media (max-width: 600px) {
         .tile {
-          width: 100%;
+          width: 90%;
           height: 100px;
         }
         .module {
           flex-direction: column;
           align-items: center;
+          margin: 10px 0; /* Add vertical spacing between tiles */
         }
         .tile p, .tile a {
           font-size: 1rem; /* Smaller text size for mobile */
@@ -73,6 +75,9 @@ html
         a(href="split-flow")
           div.tile
             p(style="text-decoration: none; color: white;") Split Flow
+        a(href="ocr-flow")
+          div.tile
+            p(style="text-decoration: none; color: white;") OCR Only Flow
         //- div.tile
         //-     a(href="ocr-headless" style="text-decoration: none; color: white;") OCR Headless <br> (coming soon)
         //- div.tile

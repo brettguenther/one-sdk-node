@@ -1,0 +1,487 @@
+/** Get External Fonts **/
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+body {
+    font-family: 'Poppins' !important;
+}
+
+/** Catch all **/
+
+.IncodeRootContainer {
+    background-color: #050505;
+}
+
+.IncodeContainer {
+    background-color: #050505;
+    color: #FFF;
+}
+
+.IncodeParagraph {
+    color: #FFF !important;
+}
+
+.IncodeDocumentSelectorContainer {
+    background-color: #050505;
+}
+
+.IncodeDocumentSelectorContainer h1 {
+    color: #FFF !important;
+}
+
+.IncodeDocumentSelectorContainer button p {
+    color: #000 !important;
+    font-family: 'Kanit' !important;
+}
+
+.IncodeIdCardButton {
+    border: 1px solid #c0a971;
+    padding: 12px 20px !important;
+    background: #d4b962 !important;
+    font-family: 'Kanit' !important;
+}
+
+.IncodeBookletButton {
+    border: 1px solid #c0a971;
+    padding: 12px 20px !important;
+    background: #d4b962 !important;
+    font-family: 'Kanit' !important;
+}
+
+/** Selfie Tutorial **/
+
+.IncodeTutorialVideoselfie {
+    width: 90% !important;
+    height: 90% !important;
+}
+
+.IncodeTutorialVideo {
+    background-color: #050505 !important;
+    border-radius: 20px;
+}
+
+.IncodeTutorialContainerselfie {
+    height: 100% !important;
+}
+
+.IncodeTutorialContainerselfie > div {
+    height: 100% !important;
+}
+
+.IncodeTutorialButtonSelfie {
+    margin-top: 20px !important;
+}
+
+.IncodeTutorialContainerselfie h1 {
+    color: #FFF !important;
+}
+
+.IncodeTutorialContainerselfie span {
+    color: #FFF !important;
+}
+
+/** Front tutorial **/
+
+.IncodeTutorialContainerFront {
+    height:100% !important;
+}
+
+.IncodeTutorialContainerFront > div {
+    height:100% !important;
+}
+
+.IncodeTutorialButton {
+    padding: 7px 12px !important;
+    height: 48px !important;
+    width: 343px !important;
+    color: #000 !important;
+    text-transform: capitalize !important;
+}
+
+.IncodeTutorialContainerFront {
+    background-color: #050505 !important;
+    background: #050505 !important;
+}
+
+.IncodeTutorialContainerFront h1 {
+    color: #FFF !important;
+}
+
+.IncodeTutorialAnimationContainer {
+    background-color: #050505;
+}
+
+.IncodeTutorialAnimation {
+    border-radius: 20px;
+}
+
+.swiper-pagination-bullet-active {
+    background: #000 !important;
+    font-family: 'Poppins' !important;
+}
+
+.IncodeSwiperComponent span {
+    background: #FFF !important;
+    font-family: 'Poppins' !important;
+}
+
+/** Front ID Camera & Retake Screen & Tutorial **/
+
+.IncodeCaptureFrontContainer {
+    background-color: #050505 !important;
+}
+
+/** Back Tutorial **/
+
+.IncodeTutorialHeader {
+    color: #FFF !important;
+    /* font-weight: 400 !important;
+    font-size: 1.4em !important; */
+}
+
+.IncodeTutorialHeader h1 {
+    color: #FFF !important;
+    /* font-weight: 400 !important;
+    font-size: 1.4em !important; */
+}
+
+.IncodeTutorialHeader h1 span {
+    color: #FFF !important;
+    /* font-weight: 400 !important;
+    font-size: 1.4em !important; */
+}
+
+.IncodeTutorialButtonBack {
+    margin-top: 32px !important;
+}
+
+/** Back ID Camera & Retake Screen & Tutorial **/
+
+.IncodeCaptureBackContainer {
+    background-color: #050505 !important;
+}
+
+/** Camera Loader **/
+
+.IncodeCameraLoading {
+    color: #FFF !important;
+    font-weight: 400 !important;
+    font-size: 1.4em !important;
+}
+
+/** Capture Preview **/
+
+.IncodePreviewContainer {
+    background-color: #050505 !important;
+}
+
+.IncodePreviewContainer p {
+    color: #fff;
+}
+
+.IncodeCapturePreviewUploadingBarOutside > div {
+    background: #FFF !important;
+    font-family: 'Poppins' !important;
+    color: #FFF !important;
+}
+
+.IncodeCapturePreviewUploadingText {
+    color: #FFF !important;
+}
+
+.IncodeCapturePreviewMessage {
+    color: #FFF !important;
+}
+
+/** Selfie Camera Results **/
+/* 
+.IncodeCaptureSelfieWebcamContainer {
+    background-color: #050505 !important;
+}
+
+.IncodeCaptureSelfieContainer {
+    background-color: #050505 !important;
+}
+
+
+ .IncodeCaptureSelfieLoadingContainer {
+    background-color: #050505 !important;
+}
+ */
+
+/** POA Container **/
+
+.IncodePOAContainer {
+    background-color: #050505 !important;
+}
+
+.IncodePOAContainer h1 {
+    color: #FFF !important;
+}
+
+.IncodePOAContainer p {
+    color: #FFF !important;
+}
+
+.IncodePOAContainer button {
+    color: #000 !important;
+    margin-top: 80px !important;
+    text-transform: capitalize !important;
+}
+
+
+/** Doc Capture Container **/
+
+.IncodeDocCaptureContainer {
+    background-color: #050505 !important;
+}
+
+.IncodeDocCaptureContainer h1 {
+    color: #FFF !important;
+}
+
+.IncodeDocCaptureContainer p {
+    color: #FFF !important;
+}
+
+
+/** Finish Screen **/
+
+.IncodeFinishContainer {
+    background-color: #050505 !important;
+}
+
+.IncodeFinishContainer h1 {
+    color: #FFF !important;
+}
+
+
+.IncodeFinishContainer p {
+    color: #FFF !important;
+}
+
+/** Retake POA **/
+
+.IncodeRetakeContainer {
+    background-color: #050505 !important;
+}
+
+.IncodeRetakeContainer h1 {
+    color: #FFF !important;
+}
+
+.IncodeRetakeContainer p {
+    color: #FFF !important;
+}
+
+.IncodeRetakeButton {
+    color: #FFF !important;
+    border: 1px solid #FFF !important;
+    border-radius: 30px !important;
+    padding: 12px 20px !important;
+    font-family: 'Kanit' !important;
+}
+
+.IncodeRetakeButton svg {
+    margin-right: 10px;
+}
+
+.IncodeRetakeButton p {
+    color: #FFF !important;
+    text-transform: capitalize !important;
+}
+
+.IncodeRetakeContinueContainer {
+    color: #000 !important;
+    border-radius: 30px !important;
+    padding: 12px 20px !important;
+    background: #d4b962 !important;
+    font-family: 'Kanit' !important;
+}
+
+/* Spinner Hang On */
+
+.IncodeH2 {
+    color: #FFF !important;
+    font-weight: 400 !important;
+    font-size: 1.4em !important;
+}
+
+.IncodeSpinnerAnimationText {
+    color: #FFF !important;
+}
+
+.IncodeSpinnerHeading {
+    margin-top: 40px;
+    color: #FFF !important;
+}
+
+/* Incode Camera Loading Message */
+
+.IncodeCameraLoading {
+    color: #FFF !important;
+    font-weight: 400 !important;
+    font-size: 1.4em !important;
+}
+
+/* Need Help */
+
+.IncodeCaptureIdNativeButton {
+    display: none;
+}
+
+/* Tweaks IncodeTutorialButtonSelfie  */
+
+.IncodeTutorialButtonContainerFront {
+    margin-top: 50px !important;
+}
+
+.IncodeTutorialButtonContainerBack {
+    margin-top: 20px !important;
+}
+
+.IncodeTutorialButtonContainerselfie {
+
+}
+
+
+.IncodePOAContainer button {
+    padding: 7px 12px !important;
+    height: 48px !important;
+    width: 343px !important;
+}
+
+/*  Button Override  */
+.mainButton {
+    background-color: #d4b962;
+    color: #050505 !important;
+}
+
+.is-desktop {
+    background-color: #050505 !important;
+}
+
+h1 {
+    color: #FFF;
+}
+
+h2 {
+    color: #FFF;
+}
+
+h3 {
+    color: #FFF;
+}
+
+.IncodeNativeCameraLabelButton button {
+    padding: 0 !important;
+    border: 0 !important;
+    color: #000 !important;
+    text-transform: capitalize !important;
+
+}
+
+.IncodeNativeCameraButton > button {
+    padding: 0 !important;
+    border: 0 !important;
+    color: #000 !important;
+    text-transform: capitalize !important;
+}
+
+/* button {
+    border: 1px solid #c0a971;
+    padding: 12px 20px !important;
+    background: #d4b962 !important;
+    font-family: 'Kanit' !important;
+    color: #000;
+} */
+
+.IncodeRedirectContainerInputs button {
+    border: 1px solid #c0a971;
+    padding: 12px 20px !important;
+    background: #d4b962 !important;
+    font-family: 'Kanit' !important;
+    color: #000;
+}
+
+
+/** Incode QR / SMS Page **/
+
+.IncodeRedirectSeparatorContainer p {
+    color: #FFF;
+}
+
+.IncodeRedirectFooterDesktop img {
+    margin-top: 20px !important;
+}
+
+.IncodeRedirectResendParagraph {
+    color: #FFF !important; 
+}
+
+/** HAck Consent - NEed to add Incode styles" **/
+
+.sc-oBxuN{
+    background-color: #050505 !important;
+}
+
+.sc-oBxuN p {
+    color: #FFF !important;
+}
+
+.sc-oBxuN label {
+    color: #FFF !important;
+}
+
+
+.sc-oBxuN button{
+    color: #000 !important;
+}
+
+/* Consent Checkbox */
+
+.sc-doqphf:checked ~ .sc-fHCFno {
+    background-color: #c0a971 !important;
+    color: #000 !important;
+}
+
+.sc-xwuxA:checked ~ .sc-dUOoGL {
+    background-color: #c0a971 !important;
+    color: #000 !important;
+}
+
+
+/* Consent 9/26 Hack Background screen and Paragraphs */
+
+.dFexkL {
+    background-color: #000 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-width: 720px;
+    margin-top: 0px;
+    margin-right: auto;
+}
+
+.bwxesT {
+    color: #FFF !important;
+}
+
+
+/* Consent Button 9/26 Hack */
+.htLfzp {
+    text-transform: capitalize !important;
+    color: #000 !important;
+}
+
+.sc-cepbVR {
+    color: #FFF !important;
+}
+
+
+
