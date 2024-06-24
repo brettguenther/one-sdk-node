@@ -27,7 +27,13 @@ async function activateSDK(oneSdkConfig) {
     type: "manual",
   });
 
-  const consent = oneSdk.component("form", {name: "CONSENT"});
+  const consent = oneSdk.component("form", {
+    name: "CONSENT",
+    type: "manual",
+    descriptions: [
+      { label: 'Your data is being collected in accordance with our privacy policy. We will verify your ID against credit bureau data sources.'},
+    ],
+  });
 
   const personal = oneSdk.component("form", {
     name: "PERSONAL",
@@ -44,9 +50,9 @@ async function activateSDK(oneSdkConfig) {
                 hide: false,
                 calendarConfig: {
                   age: {
-                    min: 20,
-                    max: 76,
-                    message: "The age must be between 20 and 76"
+                    min: 18,
+                    max: 85,
+                    message: "The age must be between 18 and 85"
                   }
                 }
               }
@@ -61,6 +67,8 @@ async function activateSDK(oneSdkConfig) {
     name: "DOCUMENT",
     type: "manual",
     numberOfIDs: 1,
+    title: {label: "Choose Your ID"},
+    // TODO: include document customization
   });
 
   const review = oneSdk.component("form", {
@@ -87,9 +95,9 @@ async function activateSDK(oneSdkConfig) {
     console.log(`welcome form failed: ${message}`)
   });
 
-  welcome.on("*", (message) => {
-    console.log(`${JSON.stringify(message)}`);
-  });
+  // welcome.on("*", (message) => {
+  //   console.log(`${JSON.stringify(message)}`);
+  // });
 
   personal.on("form:personal:ready", async () => {
     document.mount("#form-container");
@@ -99,19 +107,27 @@ async function activateSDK(oneSdkConfig) {
     personal.mount("#form-container");
   });
 
-
   document.on("form:document:ready", async ({inputInfo}) => {
     review.mount("#form-container");
   });
 
+  review.on("form:result:success", async () => {
+    console.log("result success")
+  });
   let count = 0;
-  review.on("form:result:failed", async () => {
-    if (count < 2)
-    {
+
+  review.on("form:result:partial", async () => {
+    if (count < 2) {
       retry.mount("#form-container");
       count+=1;
     }
+  });
 
+  review.on("form:result:failed", async () => {
+    if (count < 2) {
+      retry.mount("#form-container");
+      count+=1;
+    }
   });
 
   welcome.mount("#form-container");
