@@ -71,38 +71,42 @@ body {
 	text-align: center;
 }
 
-.ff-button { 
-  background-color: '#4400c9' 
-}
-
 main {
   height: 80%;
   width: 40%;
 }
 
 .smt-spinner-circle {
-    width: 50px;
-    height: 50px;
-    position: relative;
-    margin: 20px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin: 20px;
+  border-radius: 50%;
+}
+.smt-spinner {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border-right: 2px solid rgba(255,255,255,0.6);
+  border-top: 2px solid blue;
+  border-left: 2px solid blue;
+  border-bottom: 2px solid blue;
+  animation: rotate--spinner 1.6s infinite;
+}
+
+@keyframes rotate--spinner {
+  from {
+    transform: rotate(0);
   }
-  .smt-spinner {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    border-right: 2px solid rgba(255,255,255,0.6);
-    border-top: 2px solid blue;
-    border-left: 2px solid blue;
-    border-bottom: 2px solid blue;
-    animation: rotate--spinner 1.6s infinite;
+  to {
+    transform: rotate(360deg);
   }
+}
+
+.ff-button { 
+  background-color: '#4400c9' 
+}
+
+.ff-checkbox {
   
-  @keyframes rotate--spinner {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+}

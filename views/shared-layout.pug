@@ -1,0 +1,17 @@
+//- shared-layout.pug
+doctype html
+html
+  head
+    title #{title}
+    block headContent
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Julius+Sans+One&display=swap')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0', charset='UTF-8')
+    link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
+    script.
+      const sessionToken = "#{sessionToken}";
+      const googleApiKey = "#{googleApiKey}";
+  body
+    //- header
+    //-   img(src="/assets/images/FrankieOne-MainLogo.png", alt="Bank Logo")
+    block content
+    block scripts

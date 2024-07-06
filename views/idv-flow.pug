@@ -1,26 +1,14 @@
-doctype html
-html
-    head
-        title Frankie Flow
-        //- script(src='https://assets.frankiefinancial.io/one-sdk/v1.6.1-beta/oneSdk.umd.js')
-        script(src='https://assets.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
-        //- link(rel='stylesheet', href='/assets/styles/styles.css')
-        link(rel='stylesheet', href='/assets/styles/styles.branded.css')
-        link(rel='stylesheet', href='/assets/styles/styles.idv.css')
-        link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Julius+Sans+One&display=swap')
-        meta(name='viewport' content='width=device-width, initial-scale=1.0', charset='UTF-8')
-        link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
-        script.
-            const sessionToken = "#{sessionToken}"
-            const googleApiKey = "#{googleApiKey}";
-    body
-        //- h1(id='heading') OCR Testing
-        //- button(id='startOcr') Start Headed OCR
-        div(class='onboarding' id='onboarding-container')
-            //- div(class='loader-wrapper')
-            //-     div(class='loader') Loading...
-            //-     div(class='smt-spinner-circle')
-            //-         div(class='smt-spinner')
-            //-         div(class='smt-spinner-inner-circle')
-        script(src='/ocr-helper.js', type="module")
-        script(src='/script.idv.js')
+extends shared-layout
+
+block headContent
+    link(rel='stylesheet', href='/assets/styles/styles.branded.css')
+    link(rel='stylesheet', href='/assets/styles/styles.idv.css')
+    script(src='https://assets.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
+
+block content
+  main
+    div(class='onboarding' id='onboarding-container' style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;")
+
+block scripts
+    script(src='/ocr-helper.mjs', type="module")
+    script(src='/script.idv.js')

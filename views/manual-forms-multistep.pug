@@ -1,7 +1,7 @@
 extends shared-layout
 
 block headContent
-  link(rel="stylesheet", href="/assets/styles/styles.branded.css")
+  link(rel="stylesheet", href="/assets/styles/styles.css")
   script(src='https://assets.dev.frankiefinancial.io/one-sdk/RC/oneSdk.umd.js')
 
 block content
@@ -9,4 +9,4 @@ block content
     div(class='onboarding' id='form-container' style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;")
 
 block scripts
-  script(src='/script.manual-forms.js')
+  script(src='/script.manual-forms-multi-step.js')
