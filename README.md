@@ -13,7 +13,7 @@ This uses node v20.
 
 ## Localhost port forwarding to run on phone
 
-Biometrisc and OCR are meant to be performed on mobile devices.
+Biometrics and OCR are meant to be performed on mobile devices.
 
 On a Mac, there are two steps to be able to run this locally on your phone:
 

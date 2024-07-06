@@ -62,7 +62,7 @@ app.get('/split-flow', async (req, res) => {
     try {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
-        return res.render('split-flow',{ title: "FrnakieOne Split Flow", sessionToken, googleApiKey });
+        return res.render('split-flow',{ title: "FrankieOne Split Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -75,7 +75,7 @@ app.get('/manual-multistep-flow', async (req, res) => {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
-        return res.render('manual-forms-multistep',{ sessionToken, googleApiKey });
+        return res.render('manual-forms-multistep',{ title: "FrankieOne Multistep Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -88,7 +88,7 @@ app.get('/manual-intl', async (req, res) => {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
-        return res.render('manual-forms-intl',{ sessionToken, googleApiKey });
+        return res.render('manual-forms-intl',{ title: "FrankieOne International Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
