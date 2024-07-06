@@ -42,6 +42,7 @@ async function activateSDK(oneSdkConfig) {
 
     const checkBox = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyMHB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyMCAyMCIgd2lkdGg9IjIwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzAwMDAwMCIgaWQ9IkNvcmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NC4wMDAwMDAsIC04Ni4wMDAwMDApIj48ZyBpZD0iY2hlY2stY2lyY2xlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NC4wMDAwMDAsIDg2LjAwMDAwMCkiPjxwYXRoIGQ9Ik0xMCwwIEM0LjUsMCAwLDQuNSAwLDEwIEMwLDE1LjUgNC41LDIwIDEwLDIwIEMxNS41LDIwIDIwLDE1LjUgMjAsMTAgQzIwLDQuNSAxNS41LDAgMTAsMCBMMTAsMCBaIE04LDE1IEwzLDEwIEw0LjQsOC42IEw4LDEyLjIgTDE1LjYsNC42IEwxNyw2IEw4LDE1IEw4LDE1IFoiIGlkPSJTaGFwZSIvPjwvZz48L2c+PC9nPjwvc3ZnPg=="
 
+    const individual = oneSdk.individual();
     const biometrics = oneSdk.component('biometrics');
 
     const welcomeForm = oneSdk.component('form', {
@@ -83,6 +84,14 @@ async function activateSDK(oneSdkConfig) {
         ]
     });
 
+    const processingResultsForm = oneSdk.component("form", {
+        name: "LOADING",
+        title: { label: "Processing results..." },
+        descriptions: [
+            { label: "Hold tight, this can take up to 15 seconds. Please do not refresh this page or click the 'back' button on your browser." }
+        ]
+    });
+
     const loadingForm = oneSdk.component("form", {
         name: "LOADING",
         title: { label: "Loading now..." },
@@ -101,7 +110,7 @@ async function activateSDK(oneSdkConfig) {
         type: 'ocr',
         title: { label: 'Success!' },
         descriptions: [
-            { label: 'We will need to verify a few more things' },
+            { label: 'Start browsing our products now.' },
         ],
         instructions: {
             label: '',
@@ -115,7 +124,7 @@ async function activateSDK(oneSdkConfig) {
         type: "manual",
         state: 'SUCCESS',
         title: {label:'Complete'},
-        descriptions: [{label:'Process is now complete. You can close the page'}],
+        descriptions: [{label:'Process is now complete. Start browsing our products now.'}],
         cta:{label: 'Close'}
     });
 
@@ -123,8 +132,8 @@ async function activateSDK(oneSdkConfig) {
         name: "RESULT",
         type: "manual",
         state: 'FAIL',
-        title: {label:'ID Verification Failed.'},
-        descriptions: [{label:'Let\'s try and find another way to verify you.'}],
+        title: {label:'Additional detail verification.'},
+        descriptions: [{label: 'Start browsing our products now as we verify a few of your details.'}],
         cta:{label: 'Done'}
       });
 
@@ -184,10 +193,32 @@ async function activateSDK(oneSdkConfig) {
         biometrics.mount("#onboarding-container");
     });
 
-    biometrics.on("results", ({checkStatus, document, entityId}) => {
-        resultForm.mount("#onboarding-container");
+    var biometricsMounted = false;
+    
+    biometrics.on("ready", () => {
+        biometricsMounted = true;
+    })
+
+    biometrics.on("loading", (display)=> {
+        if (biometricsMounted) {
+            if (display) {
+                processingResultsForm.mount("#onboarding-container");
+            } else {
+                processingResultsForm.unmount() 
+            }
+        }
+    });
+
+    biometrics.on("results", async ({checkStatus, document, entityId}) => {
         // to do: change this based on check status to actual result manual forms (when released)
         // resultFormSuccess and resultFormFail
+        var checkResults = await individual.submit({verify: true});
+        if (checkResults.status.key === "PASS") {
+            // additional verification or next step in onboarding
+            resultFormSuccess.mount("#onboarding-container");
+        } else {
+            resultFormFail.mount("#onboarding-container");
+        }
     })
 
     biometrics.on("error", (error) => {

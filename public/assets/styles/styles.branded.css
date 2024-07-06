@@ -60,6 +60,10 @@
     color: var(--main-font-color) !important;
   }
 
+  /* #onboarding-container .ff-document h5 {
+    color: var(--main-font-color) !important;
+  } */
+
 
   body {
     display: flex;

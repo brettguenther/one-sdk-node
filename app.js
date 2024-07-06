@@ -20,17 +20,11 @@ app.get('/', async (req, res) => {
     res.render('index')
 });
 
-// Load the self-signed certificate and key
-// const options = {
-//     key: fs.readFileSync('key.pem'),
-//     cert: fs.readFileSync('cert.pem')
-// };
-
 app.get('/manual-forms', async (req, res) => {
     try {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
-        return res.render('manual-forms',{ sessionToken, googleApiKey });
+        return res.render('manual-forms',{ title: "FrankieOne Manual Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -43,7 +37,7 @@ app.get('/idv-flow', async (req, res) => {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
-        return res.render('idv-flow',{ sessionToken, googleApiKey });
+        return res.render('idv-flow',{ title: "FrankieOne IDV Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -56,7 +50,7 @@ app.get('/ocr-flow', async (req, res) => {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
-        return res.render('ocr-flow',{ sessionToken, googleApiKey });
+        return res.render('ocr-flow',{ title: "FrankieOne OCR Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -68,7 +62,33 @@ app.get('/split-flow', async (req, res) => {
     try {
         const sessionToken = await getSessionToken();
         const googleApiKey = process.env.GOOGLE_API_KEY;
-        return res.render('split-flow',{ sessionToken, googleApiKey });
+        return res.render('split-flow',{ title: "FrankieOne Split Flow", sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
+app.get('/manual-multistep-flow', async (req, res) => {
+    try {
+        const sessionToken = await getSessionToken();
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        // console.log(`sessionToken: ${sessionToken}`)
+        return res.render('manual-forms-multistep',{ title: "FrankieOne Multistep Flow", sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
+app.get('/manual-intl', async (req, res) => {
+    try {
+        const sessionToken = await getSessionToken();
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        // console.log(`sessionToken: ${sessionToken}`)
+        return res.render('manual-forms-intl',{ title: "FrankieOne International Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -94,17 +114,25 @@ app.get('api/token', async (req, res) => {
     }
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// Start the server: use https module if dev, express if prod
 
-// https.createServer(options, app).listen(PORT, '0.0.0.0', () => {
-//     console.log(`HTTPS Server running on https://0.0.0.0:${PORT}`);
-//   });
-
-// http.createServer(app).listen(80);
-// // Create an HTTPS service identical to the HTTP service.
-// https.createServer(options, app).listen(443);
+if (process.env.NODE_ENV === 'development') { 
+    // Load the self-signed certificate and key
+    const options = {
+        key: fs.readFileSync('key.pem'),
+        cert: fs.readFileSync('cert.pem')
+    };
+    https.createServer(options, app).listen(PORT, '0.0.0.0', () => {
+        console.log(`HTTPS Server running on https://0.0.0.0:${PORT}`);
+    });
+    
+    http.createServer(app).listen(80);
+    // Create an HTTPS service identical to the HTTP service.
+    https.createServer(options, app).listen(443);
+} else {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}

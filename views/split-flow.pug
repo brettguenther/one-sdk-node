@@ -1,21 +1,12 @@
-doctype html
-html
-  head
-    title Bank Onboarding - Welcome
-    //- link(rel="stylesheet", href="/assets/styles/styles.css")
-    script(src='https://assets.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
-    //- script(src='https://assets.dev.frankiefinancial.io/one-sdk/react-form-staging2/oneSdk.umd.js')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Julius+Sans+One&display=swap')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0', charset='UTF-8')
-    link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
-    script.
-        const sessionToken = "#{sessionToken}"
-        const googleApiKey = "#{googleApiKey}";
-  body
-    //- header
-    //-   img(src="/assets/images/FrankieOne-MainLogo.png", alt="Bank Logo")
-    main
-      div(class='onboarding' id='onboarding-container' style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;")
-    script(src='/ocr-helper.mjs', type="module")
-    script(src='/script.split-flow.js', type="module")
-.
+extends shared-layout
+
+block headContent
+  script(src='https://assets.dev.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
+
+block content
+  main
+    div(class='onboarding' id='onboarding-container' style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;")
+
+block scripts
+  script(src='/ocr-helper.mjs', type="module")
+  script(src='/script.split-flow.js', type="module")
