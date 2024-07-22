@@ -1,8 +1,12 @@
 // import OneSDK from '@frankieone/one-sdk'
 
-async function getSessionToken() {
-  const customerReference = uuidv4();
-
+async function getSessionToken(customerRef) {
+  var customerReference;
+  if (customerRef) {
+    customerReference = customerRef;
+  } else {
+    customerReference = DemoGuid();
+  }
   // const oneSdk = await OneSDK({ session: "test" });
 
   const authToken = (process.env.CUSTOMER_CHILD_ID != undefined) ? `${process.env.CUSTOMER_ID}:${process.env.CUSTOMER_CHILD_ID}:${process.env.API_KEY}` : `${process.env.CUSTOMER_ID}:${process.env.API_KEY}`
@@ -25,10 +29,9 @@ async function getSessionToken() {
   return response.headers.get('token');
 }
 
-function uuidv4() {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  );
+function DemoGuid() {
+  const getRandomDigits = () => Math.floor(1000 + Math.random() * 9000).toString();
+  return `customer-${getRandomDigits()}-${getRandomDigits()}`;
 }
 
 module.exports = { getSessionToken };

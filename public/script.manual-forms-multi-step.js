@@ -52,32 +52,52 @@ async function activateSDK(oneSdkConfig) {
           default:{
             fields:[
               {
+                fieldType: 'select',
+                name: 'country',
+                //label: 'Random label',
+                options: [
+                  {
+                    label: "Australia",
+                    value: "AUS",
+                  },
+                  {
+                    label: "New Zealand",
+                    value: "NZL",
+                  },
+                  {
+                    label: "China",
+                    value: "CHN",
+                  },
+                ],
+                //hide: false
+              },
+              {
                 fieldType: 'date',
                 // dataType: 'text',
                 name: 'dateOfBirth',
                 hide: true,
               },
-              // {
-              //   fieldType: 'input',
-              //   // dataType: 'text',
-              //   label: `Given Name`,
-              //   name: 'givenName',
-              //   hide: true,
-              // },
-              // {
-              //   fieldType: 'input',
-              //   // dataType: 'text',
-              //   label: `Middle Name(s)`,
-              //   name: 'middleName',
-              //   hide: true,
-              // },
-              // {
-              //   fieldType: 'input',
-              //   // dataType: 'text',
-              //   label: `Family Name`,
-              //   name: 'familyName',
-              //   hide: true,
-              // },
+              {
+                fieldType: 'input',
+                // dataType: 'text',
+                label: `Given Name`,
+                name: 'givenName',
+                hide: true,
+              },
+              {
+                fieldType: 'input',
+                // dataType: 'text',
+                label: `Middle Name(s)`,
+                name: 'middleName',
+                hide: true,
+              },
+              {
+                fieldType: 'input',
+                // dataType: 'text',
+                label: `Family Name`,
+                name: 'familyName',
+                hide: true,
+              },
               {
                 fieldType: 'address',
                 dataType: 'current_addr',
@@ -102,7 +122,31 @@ async function activateSDK(oneSdkConfig) {
               },
             ],
           },
-        }
+        },
+          NZL: {
+            "default": {
+              fields: [
+                 {
+                  fieldType: 'address',
+                  dataType: 'current_addr',
+                  name: 'address.fullAddress',
+                  hide: true,
+                },               
+              ],
+            },
+          },
+          CHN: {
+            "default": {
+              fields: [
+                 {
+                  fieldType: 'address',
+                  dataType: 'current_addr',
+                  name: 'address.fullAddress',
+                  hide: true,
+                },               
+              ],
+            },
+          },
       }
     }
   });
@@ -131,12 +175,12 @@ async function activateSDK(oneSdkConfig) {
   });
 
   welcome.on("form:welcome:ready", () => {
-    consent.mount("#form-container");
+    consent.mount("#onboarding-container");
   });
 
   consent.on("form:consent:ready", async () => {
     // loadedNameForm = true;
-    personalNameForm.mount("#form-container");
+    personalNameForm.mount("#onboarding-container");
   });
 
   welcome.on("form:welcome:failed", (message) => {
@@ -281,33 +325,33 @@ async function activateSDK(oneSdkConfig) {
   personalNameForm.on("form:personal:ready", () => {
     console.log("personal form triggered")
     // if (loadedAddressForm) {
-    //   document.mount("#form-container");
+    //   document.mount("#onboarding-container");
     // }
     // else if (loadedDobForm) {
     //   loadedAddressForm = true;
-    //   addressForm.mount("#form-container");
+    //   addressForm.mount("#onboarding-container");
     // }
     // else {
     //   loadedDobForm = true;
-    //   dobForm.mount("#form-container");
+    //   dobForm.mount("#onboarding-container");
     // }
       if (step === 0) {
-        dobForm.mount("#form-container");
+        dobForm.mount("#onboarding-container");
         step = 1;
       }  else if (step === 1) {
-        addressForm.mount("#smartui-container");
+        addressForm.mount("#onboarding-container");
         step = 2;
       } else {
-        document.mount("#smartui-container");
+        document.mount("#onboarding-container");
       }
   });
 
   document.on("form:document:back", ({inputInfo}) => {
-    personalNameForm.mount("#form-container");
+    personalNameForm.mount("#onboarding-container");
   });
 
   document.on("form:document:ready", ({inputInfo}) => {
-    review.mount("#form-container");
+    review.mount("#onboarding-container");
   });
 
   review.on("form:result:success", () => {
@@ -317,19 +361,19 @@ async function activateSDK(oneSdkConfig) {
 
   review.on("form:result:partial", () => {
     if (count < 2) {
-      retry.mount("#form-container");
+      retry.mount("#onboarding-container");
       count+=1;
     }
   });
 
   review.on("form:result:failed", () => {
     if (count < 2) {
-      retry.mount("#form-container");
+      retry.mount("#onboarding-container");
       count+=1;
     }
   });
 
-  welcome.mount("#form-container");
+  welcome.mount("#onboarding-container");
 }
 
 load()

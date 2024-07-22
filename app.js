@@ -22,9 +22,10 @@ app.get('/', async (req, res) => {
 
 app.get('/manual-forms', async (req, res) => {
     try {
-        const sessionToken = await getSessionToken();
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
         const googleApiKey = process.env.GOOGLE_API_KEY;
-        return res.render('manual-forms',{ title: "FrankieOne Manual Flow", sessionToken, googleApiKey });
+        return res.render('manual-forms',{ title: "FrankieOne eKYC Flow", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');
@@ -34,7 +35,8 @@ app.get('/manual-forms', async (req, res) => {
 
 app.get('/idv-flow', async (req, res) => {
     try {
-        const sessionToken = await getSessionToken();
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
         return res.render('idv-flow',{ title: "FrankieOne IDV Flow", sessionToken, googleApiKey });
@@ -47,7 +49,8 @@ app.get('/idv-flow', async (req, res) => {
 
 app.get('/ocr-flow', async (req, res) => {
     try {
-        const sessionToken = await getSessionToken();
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
         return res.render('ocr-flow',{ title: "FrankieOne OCR Flow", sessionToken, googleApiKey });
@@ -60,7 +63,8 @@ app.get('/ocr-flow', async (req, res) => {
 
 app.get('/split-flow', async (req, res) => {
     try {
-        const sessionToken = await getSessionToken();
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
         const googleApiKey = process.env.GOOGLE_API_KEY;
         return res.render('split-flow',{ title: "FrankieOne Split Flow", sessionToken, googleApiKey });
     } catch {
@@ -72,7 +76,8 @@ app.get('/split-flow', async (req, res) => {
 
 app.get('/manual-multistep-flow', async (req, res) => {
     try {
-        const sessionToken = await getSessionToken();
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
         return res.render('manual-forms-multistep',{ title: "FrankieOne Multistep Flow", sessionToken, googleApiKey });
@@ -85,7 +90,8 @@ app.get('/manual-multistep-flow', async (req, res) => {
 
 app.get('/manual-intl', async (req, res) => {
     try {
-        const sessionToken = await getSessionToken();
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
         return res.render('manual-forms-intl',{ title: "FrankieOne International Flow", sessionToken, googleApiKey });

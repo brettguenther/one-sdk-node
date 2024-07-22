@@ -7,3 +7,4 @@ envs/
 *.pem
 fly.toml
 README.Docker.md
+public/assets/styles/demo
