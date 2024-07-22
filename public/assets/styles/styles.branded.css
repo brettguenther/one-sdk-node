@@ -1,6 +1,7 @@
 :root {
   --main-font-color: #003f7a;
   --main-element-color: #f3700e;
+  --main-font-family: "myriad-pro",Arial,Helvetica,sans-serif ;
 }
 
 #onboarding-container .ff-button {
@@ -13,34 +14,42 @@
 
   #onboarding-container .ff-checkbox-item label {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-title {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-subtitle {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-description {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-instructions div {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-instructions p {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-instruction-item {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
-  #onboarding-container .ff-form-field {
+  #onboarding-container .ff-form-field label {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   #onboarding-container .ff-checkbox {
@@ -53,17 +62,17 @@
 
   #onboarding-container .ff-documents h5 {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
-
 
   #onboarding-container .ff-documents label {
     color: var(--main-font-color) !important;
+    font-family:  var(--main-font-family) !important;
   }
 
   /* #onboarding-container .ff-document h5 {
     color: var(--main-font-color) !important;
   } */
-
 
   body {
     display: flex;

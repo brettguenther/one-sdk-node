@@ -61,17 +61,42 @@ html
         }
       }
     link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
+    script.
+      document.addEventListener('click', function(event) {
+        var input = document.getElementById('customerInput');
+        var isClickInsideInput = input.contains(event.target);
+
+        if (!isClickInsideInput) {
+          updateLinks();
+        }
+      });
+
+      function updateLinks() {
+        var query = document.getElementById('customerInput').value;
+        var links = document.querySelectorAll('.module a');
+        links.forEach(function(link) {
+          var href = link.getAttribute('href');
+          if (query) {
+            link.setAttribute('href', href.split('?')[0] + '?customerId=' + encodeURIComponent(query));
+          } else {
+            link.setAttribute('href', href.split('?')[0]);
+          }
+        });
+      }
   body
     //- div.tile(onclick="window.location.href='#'")
     div.logo
         img(src='/assets/images/FrankieOne-MainLogo.svg')
+    div
+      input#customerInput(type='text', placeholder='customer id (optional)')
+      //- button(onclick='updateLinks()') Update Links
     div.module
         a(href="idv-flow")
           div.tile
             p(style="text-decoration: none; color: white;") IDV Flow
         a(href="manual-forms")
           div.tile
-            p(style="text-decoration: none; color: white;") Manual Form
+            p(style="text-decoration: none; color: white;") eKYC Flow
         a(href="split-flow")
           div.tile
             p(style="text-decoration: none; color: white;") Split Flow

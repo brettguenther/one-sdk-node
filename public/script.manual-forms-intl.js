@@ -379,14 +379,14 @@ async function activateSDK(oneSdkConfig) {
   });
 
   welcome.on("form:welcome:ready", () => {
-    // consent.mount("#form-container");
-    personal.mount("#form-container");
-    // document.mount("#form-container");
+    // consent.mount("#onboarding-container");
+    personal.mount("#onboarding-container");
+    // document.mount("#onboarding-container");
   });
 
   consent.on("form:consent:ready", async () => {
-    personal.mount("#form-container");
-    // document.mount("#form-container");
+    personal.mount("#onboarding-container");
+    // document.mount("#onboarding-container");
   });
 
   welcome.on("form:welcome:failed", (message) => {
@@ -399,15 +399,15 @@ async function activateSDK(oneSdkConfig) {
   // });
 
   personal.on("form:personal:ready", async () => {
-    document.mount("#form-container");
+    document.mount("#onboarding-container");
   });
 
   document.on("form:document:back", async ({ inputInfo }) => {
-    personal.mount("#form-container");
+    personal.mount("#onboarding-container");
   });
 
   document.on("form:document:ready", async ({ inputInfo }) => {
-    review.mount("#form-container");
+    review.mount("#onboarding-container");
   });
 
   review.on("form:result:success", async () => {
@@ -417,19 +417,19 @@ async function activateSDK(oneSdkConfig) {
 
   review.on("form:result:partial", async () => {
     if (count < 2) {
-      retry.mount("#form-container");
+      retry.mount("#onboarding-container");
       count += 1;
     }
   });
 
   review.on("form:result:failed", async () => {
     if (count < 2) {
-      retry.mount("#form-container");
+      retry.mount("#onboarding-container");
       count += 1;
     }
   });
 
-  welcome.mount("#form-container");
+  welcome.mount("#onboarding-container");
 }
 
 load()
