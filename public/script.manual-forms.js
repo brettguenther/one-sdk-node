@@ -95,7 +95,12 @@ async function activateSDK(oneSdkConfig) {
                     message: "The age must be between 18 and 85"
                   }
                 }
-              }
+              },
+              // {
+              //   fieldType: 'address',
+              //   name: 'address.fullAddress',
+              //   acceptedCountries: ['IND', 'AUS'], // coming soon
+              // },
             ]
           }
         }
