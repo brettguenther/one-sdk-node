@@ -74,6 +74,33 @@ app.get('/split-flow', async (req, res) => {
     }
 });
 
+app.get('/split-flow-alt', async (req, res) => {
+    try {
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        return res.render('ocr-idv-prebio',{ title: "FrankieOne Split Flow with IDV Pre Bio", sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
+
+app.get('/split-flow-nz', async (req, res) => {
+    try {
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        return res.render('split-flow-nz',{ title: "FrankieOne Split Flow ", sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
 app.get('/manual-multistep-flow', async (req, res) => {
     try {
         const customerId = req.query.customerId; // Extract the customerId query parameter
@@ -95,6 +122,20 @@ app.get('/manual-intl', async (req, res) => {
         const googleApiKey = process.env.GOOGLE_API_KEY;
         // console.log(`sessionToken: ${sessionToken}`)
         return res.render('manual-forms-intl',{ title: "FrankieOne International Flow", sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
+app.get('/idv-multi', async (req, res) => {
+    try {
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        // console.log(`sessionToken: ${sessionToken}`)
+        return res.render('idv-flow-multi-doc',{ title: "FrankieOne IDV Flow Multi Doc", sessionToken, googleApiKey });
     } catch {
         console.error('Error getting session token');
         res.status(500).send('Internal Server Error');

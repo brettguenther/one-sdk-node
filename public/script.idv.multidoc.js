@@ -37,11 +37,32 @@ async function activateSDK(oneSdkConfig) {
 
     const oneSdkIndividual = oneSdk.individual();
 
+    oneSdkIndividual.setExtraData({
+        "idv_multi_doc": "true"
+    })
+
     oneSdkIndividual.addConsent("general");
     oneSdkIndividual.addConsent("docs");
     oneSdkIndividual.addConsent("creditheader");
 
     await oneSdkIndividual.submit();
+
+    const welcomeForm = oneSdk.component("form", {
+        name: "WELCOME",
+        type: "ocr",
+        title: {label:"ID verification"},
+        /*descriptions: [
+          { label: 'This is a sample dynamic page.', style: {} },
+          { label: 'It can contain multiple paragraphs.', style: {} },
+        ], */
+        instructions: {
+          content: [
+            { label: "An ID on you (this must be a driver’s licence or passport)", icon: checkBox },
+            { label: "Grant access permission on the camera of your phone so we can capture your ID", icon: checkBox },
+            { label: "You must be an Australian citizen, permanent resident or Visa holder", icon: checkBox },
+          ]
+        }
+    });
 
     const idv = oneSdk.flow('idv');
 

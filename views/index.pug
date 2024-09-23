@@ -9,12 +9,26 @@ html
         justify-content: center;
         align-items: center;
         height: 100vh;
-        margin: 0;
+        padding: 20px;
         background-color: #f0f0f0;
-        flex-direction: column;
       }
       .logo {
         margin: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .logo img {
+        max-width: 100%;
+        height: auto;
+      }
+      #customerInput {
+        margin-top: 40px;
+        width: 90%;
+        max-width: 600px;
+        display: flex;
+        padding: 15px;
+        font-size: 1.2rem;
+        box-sizing: border-box;
       }
       .module {
         display: flex;
@@ -22,7 +36,7 @@ html
         justify-content: center;
       }
       .tile {
-        width: 200px;
+        width: 150px;       
         height: 150px;
         background-color: #091C2E;
         margin: 10px;
@@ -46,10 +60,19 @@ html
         padding: 0;
         font-size: 1.6rem; /* Default text size */
       }
-      @media (max-width: 600px) {
+      @media screen and (max-width: 1000px) {
+        body {
+          flex-direction: column;
+        }
+        #customerInput {
+          padding: 20px;
+          font-size: 2rem;
+          max-width: none;
+        }
         .tile {
-          width: 90%;
-          height: 100px;
+          /* width: 90%; */
+          height: 500px;
+          width: 500px;
         }
         .module {
           flex-direction: column;
@@ -57,7 +80,21 @@ html
           margin: 10px 0; /* Add vertical spacing between tiles */
         }
         .tile p, .tile a {
-          font-size: 1rem; /* Smaller text size for mobile */
+          font-size: 5rem; /* Smaller text size for mobile */
+        }
+      }
+      @media screen and (max-width: 750px) {
+        .tile {
+          width: 100px;
+          height: 100px;
+        }
+
+        .tile p, .tile a {
+          font-size: 1rem;
+        }
+
+        #customerInput {
+          font-size: 1rem;
         }
       }
     link(rel='icon', type='image/x-icon', href='/assets/images/favicon.ico')
@@ -87,7 +124,7 @@ html
     //- div.tile(onclick="window.location.href='#'")
     div.logo
         img(src='/assets/images/FrankieOne-MainLogo.svg')
-    div
+    div.customerInput
       input#customerInput(type='text', placeholder='customer id (optional)')
       //- button(onclick='updateLinks()') Update Links
     div.module

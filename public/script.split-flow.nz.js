@@ -44,6 +44,11 @@ async function activateSDK(oneSdkConfig) {
 
     const individual = oneSdk.individual();
     const biometrics = oneSdk.component('biometrics');
+    individual.addConsent("general");
+    individual.addConsent("docs");
+    individual.addConsent("creditheader");
+    individual.setProfileType('international')
+    individual.submit()
 
     const welcomeForm = oneSdk.component('form', {
         name: 'WELCOME',
@@ -51,13 +56,15 @@ async function activateSDK(oneSdkConfig) {
         title: { label: 'Let\'s get you verified' },
         descriptions: [
             { label: 'We\'ll  need to collect some personal information to verify your identity for this transaction. It\'s important to enter details as accurately as possible. To join us you need to be over 18 years old.' },
+
             // { label: '', style: myStyle },
         ],
         instructions: { content: [
-            { icon: checkBox, label: "A valid form of identity. Valid types include a passport,medicare or licence." },
+            { icon: checkBox, label: "A valid form of identity. Valid types include a passport or licence." },
             { icon: checkBox, label: "To grant camera permissions to allow for phot capture of the physical id." }, 
             { icon: checkBox, label: "To provide consent and submit details." }] 
-        },        cta: { label: 'Start' },
+        },
+        cta: { label: 'Start' },
     });
 
     const consentForm = oneSdk.component("form", {
@@ -77,7 +84,15 @@ async function activateSDK(oneSdkConfig) {
     const documentForm = oneSdk.component("form", {
         name: "DOCUMENT",
         showPreps: true,
-        type: "ocr"
+        type: "ocr",
+        documents: [
+            {
+              type: "DRIVERS_LICENCE",
+            },
+            {
+              type: "PASSPORT",
+            }
+        ],
     });
 
     const loadingExtractingForm = oneSdk.component("form", {
@@ -109,7 +124,48 @@ async function activateSDK(oneSdkConfig) {
         type: "ocr"
     });
 
-    const passportReviewForm = oneSdk.component("form", {
+    const resultForm = oneSdk.component('form', {
+        name: 'WELCOME',
+        type: 'ocr',
+        title: { label: 'Success!' },
+        descriptions: [
+            { label: 'Start browsing our products now.' },
+        ],
+        instructions: {
+            label: '',
+            content: []
+        },
+        cta: { label: 'Get started now.' },
+    });
+
+    const resultFormSuccess = oneSdk.component("form", {
+        name: "RESULT",
+        type: "manual",
+        state: 'SUCCESS',
+        title: {label:'Complete'},
+        descriptions: [{label:'Process is now complete. Your transaction can now be completed.'}],
+        cta:{label: 'Close'}
+    });
+
+    const resultFormFail = oneSdk.component("form", {
+        name: "RESULT",
+        type: "manual",
+        state: 'FAIL',
+        title: {label:'Additional detail verification.'},
+        descriptions: [{label: 'Start browsing our products now as we verify a few of your details.'}],
+        cta:{label: 'Done'}
+      });
+
+      const driversLicenceReviewForm = oneSdk.component("form", {
+        name: "REVIEW",
+        type: "ocr",
+      });
+  
+      driversLicenceReviewForm.on("form:review:ready", async () => {
+        // biometrics.mount("#onboarding-container");
+      });
+  
+      const passportReviewForm = oneSdk.component("form", {
         name: "REVIEW",
         type: "ocr",
         personal: {
@@ -128,8 +184,12 @@ async function activateSDK(oneSdkConfig) {
           }
         }
       });
-
-    const standardReviewForm = oneSdk.component("form", {
+  
+      // passportReviewForm.on("form:review:ready", async () => {
+      //   biometrics.mount("#onboarding-container");
+      // });
+  
+      const standardReviewForm = oneSdk.component("form", {
         name: "REVIEW",
         type: "ocr",
         personal: {
@@ -154,105 +214,9 @@ async function activateSDK(oneSdkConfig) {
         }
       });
 
-      const nationalHealthCardReviewForm = oneSdk.component("form", {
-        name: "REVIEW",
-        type: "ocr",
-        personal: {
-          countries: {
-            default: {
-              default: {
-                fields: [
-                  {
-                    fieldType: 'address',
-                    name: 'address.fullAddress',
-                    hide: true
-                  },
-                  {
-                    fieldType: 'date',
-                    name: 'dateOfBirth',
-                    hide: true
-                  },
-                  {
-                    fieldType: 'date',
-                    name: 'idExpiry',
-                    hide: true
-                  },
-                  {
-                    fieldType: 'input',
-                    name: 'extraData.reference',
-                    hide: true
-                  },
-                  {
-                    fieldType: 'select',
-                    name: 'idSubType',
-                    hide: true
-                  },
-                ]
-              }
-            }
-          }
-        }
-      });
-
-    const resultForm = oneSdk.component('form', {
-        name: 'WELCOME',
-        type: 'ocr',
-        title: { label: 'Success!' },
-        descriptions: [
-            { label: 'Start browsing our products now.' },
-        ],
-        instructions: {
-            label: '',
-            content: []
-        },
-        cta: { label: 'Get started now.' },
-    });
-
-    const resultFormSuccess = oneSdk.component("form", {
-        name: "RESULT",
-        type: "manual",
-        state: 'SUCCESS',
-        title: {label:'Complete'},
-        descriptions: [{label:'Process is now complete. Start browsing our products now.'}],
-        cta:{label: 'Close'}
-    });
-
-    const resultFormFail = oneSdk.component("form", {
-        name: "RESULT",
-        type: "manual",
-        state: 'FAIL',
-        title: {label:'Additional detail verification.'},
-        descriptions: [{label: 'Start browsing our products now as we verify a few of your details.'}],
-        cta:{label: 'Done'}
-      });
-
     const ocr = oneSdk.component("ocr", {
         // documents: [{ type: docType, countries: ["AUS", "USA"] }],
     });
-
-    function loadReviewScreen({ document }) {
-        if (document) {
-          console.log(`${JSON.stringify(document)}`);
-          // console.log(`dob: ${document.ocrResult.dateOfBirth}`);
-          // console.log("trying to load review screen");
-          const docType = document.idType;
-          console.log(`docType: ${docType}`);
-          if (docType == "DRIVERS_LICENCE")
-            driversLicenceReviewForm.mount("#onboarding-container");
-          else if (docType == "PASSPORT") {
-            passportReviewForm.mount("#onboarding-container");
-          }
-          else if (docType == "NATIONAL_HEALTH_ID") {
-            nationalHealthCardReviewForm.mount("#onboarding-container");
-          }
-          else {
-            standardReviewForm.mount("#onboarding-container");
-            // nationalHealthCardReviewForm.mount("#onboarding-container");
-          }
-        } else {
-          console.log("No document returned");
-        }
-    }
 
     ocr.on("*", (message) => {
         console.log(`ocr wildcard: ${JSON.stringify(message)}`);
@@ -296,6 +260,25 @@ async function activateSDK(oneSdkConfig) {
         ocr.mount("#onboarding-container");
     });
 
+    function loadReviewScreen({ document }) {
+        if (document) {
+          console.log(`${JSON.stringify(document)}`);
+          // console.log(`dob: ${document.ocrResult.dateOfBirth}`);
+          // console.log("trying to load review screen");
+          const docType = document.docType;
+          if (docType == "DRIVERS_LICENCE")
+            driversLicenceReviewForm.mount("#onboarding-container");
+          else if (docType == "PASSPORT") {
+            passportReviewForm.mount("#onboarding-container");
+          }
+          else {
+            standardReviewForm.mount("#onboarding-container");
+          }
+        } else {
+          console.log("No document returned");
+        }
+      }
+
     ocr.on("results", ({ document }) => {
         console.log(`ocr result: ${JSON.stringify(document)}`)
         // show a review screen after OCR
@@ -318,7 +301,7 @@ async function activateSDK(oneSdkConfig) {
             if (display) {
                 processingResultsForm.mount("#onboarding-container");
             } else {
-                processingResultsForm.unmount() 
+                // processingResultsForm.unmount() 
             }
         }
     });
@@ -326,11 +309,15 @@ async function activateSDK(oneSdkConfig) {
     biometrics.on("results", async ({checkStatus, document, entityId}) => {
         // to do: change this based on check status to actual result manual forms (when released)
         // resultFormSuccess and resultFormFail
+        // processingResultsForm.mount("#onboarding-container");
+        
         var checkResults = await individual.submit({verify: true});
         if (checkResults.status.key === "PASS") {
+            processingResultsForm.unmount() 
             // additional verification or next step in onboarding
             resultFormSuccess.mount("#onboarding-container");
         } else {
+            processingResultsForm.unmount() 
             resultFormFail.mount("#onboarding-container");
         }
     })
