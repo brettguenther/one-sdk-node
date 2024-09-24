@@ -5,8 +5,8 @@ Simple Express + Pug app to test the OneSDK
 ## Usage
 
 1. `npm install`
-2. Adjust the `.example.env` file to `.env` and populate enc variables
-3. generate or provide self signed certificates (`cert.pem` and `key.pem` files)
+2. Adjust the `.example.env` file to `.env` and populate env variables
+3. generate or provide self signed certificates if running locally (`cert.pem` and `key.pem` files). https is needed for proper functioning of permission prompts.
 4. `npm run start`
 
 This uses node v20.

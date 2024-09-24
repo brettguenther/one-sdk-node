@@ -66,16 +66,20 @@ async function activateSDK(oneSdkConfig) {
 
     const idv = oneSdk.flow('idv');
 
-    idv.on('error', (err) => {
-      console.log(`idv error: ${JSON.stringify(err)}`)
-    });
+    // idv.on('error', (err) => {
+    //   console.log(`idv error: ${JSON.stringify(err)}`)
+    // });
 
     idv.on('*', (message)=> {
         console.log(`idv | * | ${JSON.stringify(message)}`)
     })
 
-    idv.on('results', ({checkStatus, document, entityId}) => { 
-      console.log(`idv results: ${checkStatus}`)
+    // idv.on('results', ({checkStatus, document, entityId}) => { 
+    //   console.log(`idv results: ${checkStatus}`)
+    // })
+
+    oneSdk.on('*', (message)=> {
+        console.log(`oneSdk | * | ${JSON.stringify(message)}`)
     })
 
     idv.mount("#onboarding-container");
