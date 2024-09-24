@@ -1,0 +1,30 @@
+extends shared-layout
+
+block headContent
+    link(rel='stylesheet', href='/assets/styles/styles.ocr-headless.css')
+    script(src='https://assets.frankiefinancial.io/one-sdk/v1/oneSdk.umd.js')
+
+block content
+  h1 Upload ID Document for OCR
+
+  form(id="uploadForm", enctype="multipart/form-data")
+    div
+      label(for="frontImage") Upload Front Side of ID:
+      input(type="file" id="frontImage" accept="image/*")
+    div
+      label(for="backImage") Upload Back Side of ID:
+      input(type="file" id="backImage" accept="image/*")
+    
+    .image-viewer
+      img#frontImagePreview(src='/assets/images/front-id-placeholder.png', class="image-preview", alt="Front ID Preview")
+      img#backImagePreview(src='/assets/images/back-id-placeholder.png', class="image-preview", alt="Back ID Preview")
+
+    button(type="button" id="submitBtn") Submit for OCR
+
+  .results
+    h2 OCR Results:
+    pre#jsonResults
+
+block scripts
+  script(src='/ocr-helper.mjs', type="module")
+  script(src='/ocr-headless.js', type="module")

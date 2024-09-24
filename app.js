@@ -143,6 +143,20 @@ app.get('/idv-multi', async (req, res) => {
     }
 });
 
+app.get('/ocr-headless', async (req, res) => {
+    try {
+        const customerId = req.query.customerId; // Extract the customerId query parameter
+        const sessionToken = await getSessionToken(customerId);
+        const googleApiKey = process.env.GOOGLE_API_KEY;
+        // console.log(`sessionToken: ${sessionToken}`)
+        return res.render('ocr-headless',{ title: "FrankieOne Headless OCR", sessionToken, googleApiKey });
+    } catch {
+        console.error('Error getting session token');
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+});
+
 app.get('/welcome', (req, res) => {
     res.render('welcome');
 });
